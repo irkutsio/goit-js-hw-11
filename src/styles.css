@@ -5,6 +5,7 @@ body {
 
 img {
     display: block;
+    width: 410px;
 }
 
 button {
@@ -20,6 +21,7 @@ button {
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 16px;
 }
 
@@ -46,8 +48,8 @@ form {
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 38px;
+    padding-bottom: 38px;
 background-color: rgb(171, 125, 214);
 }
 
