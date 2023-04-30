@@ -8,16 +8,18 @@ let pageNumber = 1;
 
 
 
-refs.searchFormEl.addEventListener('submit', onImageSearch);
+refs.searchFormEl.addEventListener('submit', onSearchFormEl);
 refs.loadMoreBtn.addEventListener('click', onLoadMore)
 
 
-async function onImageSearch(event) {
+
+
+async function onSearchFormEl(event) {
   refs.galleryListEl.innerHTML = '';
   event.preventDefault();
   const input = event.currentTarget.searchQuery.value.trim();
-  const arr = await makeFetch(input);
-  const markup = await createMarkup(arr, pageNumber);
+  const arr = await makeFetch(input,pageNumber);
+  const markup = await createMarkup(arr);
   if (!markup || !input) {
     refs.galleryListEl.innerHTML = '';
     return;
@@ -29,6 +31,10 @@ refs.loadMoreBtn.style.display = 'block';
  } 
 
 
- function onLoadMore () {
+ async function onLoadMore() {
   pageNumber += 1;
- }
+  const input = refs.searchFormEl.searchQuery.value.trim();
+  const arr = await makeFetch(input, pageNumber);
+  const markup = await createMarkup(arr);
+  refs.galleryListEl.insertAdjacentHTML('beforeend', createMarkup(arr));
+}

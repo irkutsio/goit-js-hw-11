@@ -1,9 +1,7 @@
 import { instance } from './api';
 import Notiflix from 'notiflix';
-import refs from './refs';
-import { createMarkup } from './markup';
-
-
+// import refs from './refs';
+// import { createMarkup } from './markup';
 
 
 export async function makeFetch(request, pages) {
