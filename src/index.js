@@ -5,10 +5,10 @@ import { makeFetch } from './request';
 import { createMarkup } from './markup';
 import refs from './refs';
 
-let pageNumber = 1;
-
 refs.searchFormEl.addEventListener('submit', onSearchFormEl);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
+
+let pageNumber = 1;
 
 async function onSearchFormEl(event) {
   resetMarkup ()
@@ -30,6 +30,8 @@ const lightbox = new SimpleLightbox('.gallery__link');
   lightbox.refresh();
   refs.loadMoreBtn.style.display = 'block';
 }
+
+
 
 async function onLoadMore() {
   pageNumber += 1;

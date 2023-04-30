@@ -2,7 +2,6 @@ export function createMarkup(arr) {
   const markup = arr
     .map(
       ({
-        
           downloads,
           comments,
           views,
