@@ -1,40 +1,51 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import Notiflix from 'notiflix';
 import { makeFetch } from './request';
-import refs from './refs';
 import { createMarkup } from './markup';
+import refs from './refs';
 
 let pageNumber = 1;
 
-
-
 refs.searchFormEl.addEventListener('submit', onSearchFormEl);
-refs.loadMoreBtn.addEventListener('click', onLoadMore)
-
-
-
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 async function onSearchFormEl(event) {
-  refs.galleryListEl.innerHTML = '';
+  resetMarkup ()
   event.preventDefault();
   const input = event.currentTarget.searchQuery.value.trim();
-  const arr = await makeFetch(input,pageNumber);
-  const markup = await createMarkup(arr);
-  if (!markup || !input) {
-    refs.galleryListEl.innerHTML = '';
+  const imgObj = await makeFetch(input, 1);
+  const markup = await createMarkup(imgObj.hits);
+ 
+
+ if (!markup || !input) {
+  resetMarkup ()
     return;
   }
-  const lightbox = new SimpleLightbox('.gallery__link');
-refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-lightbox.refresh();
-refs.loadMoreBtn.style.display = 'block';
- } 
+  else {
+    Notiflix.Notify.success(`Hooray! We found ${imgObj.totalHits} images.`);
+  }
+const lightbox = new SimpleLightbox('.gallery__link');
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
+  refs.loadMoreBtn.style.display = 'block';
+}
 
-
- async function onLoadMore() {
+async function onLoadMore() {
   pageNumber += 1;
   const input = refs.searchFormEl.searchQuery.value.trim();
-  const arr = await makeFetch(input, pageNumber);
-  const markup = await createMarkup(arr);
-  refs.galleryListEl.insertAdjacentHTML('beforeend', createMarkup(arr));
+  const imgObj = await makeFetch(input, pageNumber);
+  const markup = await createMarkup(imgObj.hits);
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+  if (pageNumber * imgObj.hits.length >= imgObj.totalHits) {
+    refs.loadMoreBtn.style.display = 'none';
+    Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+  }
+
+}
+
+
+function resetMarkup () {
+  refs.galleryListEl.innerHTML = '';
+  refs.loadMoreBtn.style.display = 'none';
 }

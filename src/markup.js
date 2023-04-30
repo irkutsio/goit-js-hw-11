@@ -2,13 +2,15 @@ export function createMarkup(arr) {
   const markup = arr
     .map(
       ({
-        downloads,
-        comments,
-        views,
-        likes,
-        tags,
-        webformatURL,
-        largeImageURL,
+        
+          downloads,
+          comments,
+          views,
+          likes,
+          tags,
+          webformatURL,
+          largeImageURL,
+       
       }) => `
       <a class="gallery__link" href="${largeImageURL}">
         <div class="photo-card">
