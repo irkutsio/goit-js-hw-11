@@ -51,6 +51,7 @@ form {
     padding-top: 38px;
     padding-bottom: 38px;
 background-color: rgb(171, 125, 214);
+box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
 }
 
 input {
