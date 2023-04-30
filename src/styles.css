@@ -1,5 +1,78 @@
+body {
+    padding-left: 24px;
+    padding-right: 24px
+}
+
+img {
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    font-size: 28px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color:rgb(50, 11, 86);
+}
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+}
+
+.load-more{
+    display: none;
+margin-right: auto;
+margin-left: auto;
+    margin-top: 36px;
+    padding: 24px;
+    background-color: rgb(171, 125, 214);
+    color:beige;
+
+}
+
+.load-more:hover {
+    background-color: rgb(146, 93, 196);
+    border-color: rgb(146, 93, 196);
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
+}
+
+form {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+background-color: rgb(171, 125, 214);
+}
+
+input {
+    width: 300px;
+    padding: 4px;
+    font-size:24px ;
+    border-radius: 5px;
+    outline: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(50, 11, 86);
+}
+
+a {
+    text-decoration: none;
+    color:rgb(50, 11, 86);
+}
+
+.info {
+    display: flex;
+  font-size: 20px;
+}
+
+.info-item {
+    margin-right: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
