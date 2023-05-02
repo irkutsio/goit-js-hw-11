@@ -8,11 +8,14 @@ import refs from './refs';
 refs.searchFormEl.addEventListener('submit', onSearchFormEl);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-let pageNumber = 1;
+let pageNumber = 0;
+
+const lightbox = new SimpleLightbox('.gallery__link');
 
 async function onSearchFormEl(event) {
-  resetMarkup();
   event.preventDefault();
+  pageNumber = 1;
+  resetMarkup();
   const input = event.currentTarget.searchQuery.value.trim();
   const imgObj = await makeFetch(input, 1);
   const markup = await createMarkup(imgObj.hits);
@@ -24,9 +27,7 @@ async function onSearchFormEl(event) {
     Notiflix.Notify.success(`Hooray! We found ${imgObj.totalHits} images.`);
   }
 
-  const lightbox = new SimpleLightbox('.gallery__link');
   refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-  lightbox.refresh();
   refs.loadMoreBtn.style.display = 'block';
 
   if (imgObj.hits.length < 40) {
@@ -34,6 +35,7 @@ async function onSearchFormEl(event) {
   } else {
     refs.loadMoreBtn.style.display = 'block';
   }
+  lightbox.refresh();
 }
 
 async function onLoadMore() {
@@ -42,14 +44,13 @@ async function onLoadMore() {
   const imgObj = await makeFetch(input, pageNumber);
   const markup = await createMarkup(imgObj.hits);
   refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-  const lightbox = new SimpleLightbox('.gallery__link');
-  lightbox.refresh();
   if (pageNumber * 40 >= imgObj.totalHits) {
     refs.loadMoreBtn.style.display = 'none';
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
   }
+  lightbox.refresh();
 }
 
 function resetMarkup() {
