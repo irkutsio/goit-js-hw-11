@@ -8,13 +8,19 @@ img {
     width: 410px;
 }
 
+.search:hover{
+    background-color: rgb(216, 206, 226) ;
+    box-shadow: 1px 1px 1px 0px rgb(83, 59, 105) ;
+}
+
 button {
+    box-shadow: 1px 1px 1px 0px rgb(136, 87, 182) ;
     cursor: pointer;
     font-size: 28px;
     padding-left: 32px;
     padding-right: 32px;
     border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: none;
     color:rgb(50, 11, 86);
 }
 
