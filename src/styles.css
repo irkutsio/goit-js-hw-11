@@ -79,3 +79,13 @@ a {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+ 
+.photo-card {
+    transition: transform 250ms;
+}
+
+.photo-card:hover {
+    transform: perspective(800px) rotateX(10deg);
+    box-shadow: 1px 1px 1px 0px rgba(56, 53, 53, 0.75);
+
+}
